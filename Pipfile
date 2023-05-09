@@ -11,6 +11,8 @@ psycopg = "*"
 djangorestframework = "*"
 routes = "*"
 controller = "*"
+djangoql = "*"
+django-import-export = "*"
 
 [dev-packages]
 

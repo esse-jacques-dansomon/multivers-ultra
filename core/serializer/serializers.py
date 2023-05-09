@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models.models import Developer, Kind, Languages, Niveau, Skill
+from core.models import Developer, Kind, Languages, Niveau, Skill
 
 
 class DeveloperSerializer(serializers.ModelSerializer):

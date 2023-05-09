@@ -2,7 +2,7 @@ from django.contrib import admin
 from djangoql.admin import DjangoQLSearchMixin
 from import_export.admin import ImportExportModelAdmin
 
-from core.models import Languages, Kind, Developer
+from core.models import Languages, Kind, Developer, Skill, Niveau
 
 
 @admin.register(Languages)
@@ -15,9 +15,19 @@ class KindAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
+@admin.register(Skill)
+class SkillAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+@admin.register(Niveau)
+class NiveauAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
 # Register your models here.
 @admin.register(Developer)
-class DeveloperAdmin(DjangoQLSearchMixin,ImportExportModelAdmin ):
+class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
     search_fields = ('languages',)
     list_display = ('firstname', 'name', 'site', 'mail', 'page', 'phone', 'whatApps')
     list_editable = ["mail", ]

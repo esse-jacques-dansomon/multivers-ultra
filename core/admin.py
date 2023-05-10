@@ -2,15 +2,15 @@ from django.contrib import admin
 from djangoql.admin import DjangoQLSearchMixin
 from import_export.admin import ImportExportModelAdmin
 
-from core.models import Languages, Kind, Developer, Skill, Niveau
+from core.models import Level, Category, Skill, Country, Developer
 
 
-@admin.register(Languages)
+@admin.register(Level)
 class LanguagesAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
-@admin.register(Kind)
+@admin.register(Category)
 class KindAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
@@ -20,7 +20,7 @@ class SkillAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
-@admin.register(Niveau)
+@admin.register(Country)
 class NiveauAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
@@ -28,7 +28,7 @@ class NiveauAdmin(admin.ModelAdmin):
 # Register your models here.
 @admin.register(Developer)
 class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
-    search_fields = ('languages',)
-    list_display = ('firstname', 'name', 'site', 'mail', 'page', 'phone', 'whatApps')
-    list_editable = ["mail", ]
+    search_fields = ('skills', )
+    list_display = ('name', 'email', 'phone', 'address', 'created_at', 'updated_at')
+    list_editable = ["email", ]
     readonly_fields = ('created_at', 'updated_at')

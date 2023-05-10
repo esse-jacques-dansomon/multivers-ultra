@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2e962760dbca788feb3489b971a5048ff8a14aa190b2ebd97487ce2ca0382c28"
+            "sha256": "96205422812337985b60953bda43a73ae016db2cc71cc841cc36e3b95349edb5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -184,6 +184,14 @@
             "index": "pypi",
             "version": "==3.14.0"
         },
+        "djangorestframework-simplejwt": {
+            "hashes": [
+                "sha256:4c0d2e2513e12587d93501ac091781684a216c3ee614eb3b5a10586aef5ca845",
+                "sha256:d27d4bcac2c6394f678dea8b4d0d511c6e18a7f2eb8aaeeb8a7de601aeb77c42"
+            ],
+            "index": "pypi",
+            "version": "==5.2.2"
+        },
         "et-xmlfile": {
             "hashes": [
                 "sha256:8eb9e2bc2f8c97e37a2dc85a09ecdcdec9d8a396530a6d5a33b30b9a92da0c5c",
@@ -191,6 +199,13 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==1.1.0"
+        },
+        "groups": {
+            "hashes": [
+                "sha256:10fc880b6478f8ae917eda9d82fac6656dbe1c85aec6d0231735a1075cda854c"
+            ],
+            "index": "pypi",
+            "version": "==0.1"
         },
         "idna": {
             "hashes": [
@@ -253,6 +268,14 @@
             ],
             "index": "pypi",
             "version": "==2.9.6"
+        },
+        "pyjwt": {
+            "hashes": [
+                "sha256:ba2b425b15ad5ef12f200dc67dd56af4e26de2331f965c5439994dad075876e1",
+                "sha256:bd6ca4a3c4285c1a2d4349e5a035fdf8fb94e04ccd0fcbe6ba289dae9cc3e074"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==2.7.0"
         },
         "python-engineio": {
             "hashes": [
@@ -391,6 +414,14 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==2.0.2"
+        },
+        "wheel": {
+            "hashes": [
+                "sha256:cd1196f3faee2b31968d626e1731c94f99cbdb67cf5a46e4f5656cbee7738873",
+                "sha256:d236b20e7cb522daf2390fa84c55eea81c5c30190f90f29ae2ca1ad8355bf247"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==0.40.0"
         },
         "xlrd": {
             "hashes": [

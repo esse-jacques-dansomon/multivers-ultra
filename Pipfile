@@ -13,6 +13,8 @@ routes = "*"
 controller = "*"
 djangoql = "*"
 django-import-export = "*"
+djangorestframework-simplejwt = "*"
+groups = "*"
 
 [dev-packages]
 

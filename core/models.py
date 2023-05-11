@@ -27,7 +27,7 @@ class Address(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE, )
 
     def __str__(self):
-        return self.name + " " + self.city + " " + self.street
+        return self.country.name + " " + self.city + " " + self.street
 
 
 class Category(models.Model):
@@ -82,7 +82,7 @@ class Developer(models.Model):
     phone = models.CharField(max_length=255, blank=True, null=True)
     email = models.EmailField(max_length=255, blank=True, null=True)
     fixTel = models.CharField(max_length=255, blank=True, null=True)
-    whatApp = models.CharField(max_length=255, blank=True, null=True)
+    whatsApp = models.CharField(max_length=255, blank=True, null=True)
     otherCanal = models.CharField(max_length=255, blank=True, null=True)
     photo = models.FileField(max_length=255, blank=True, null=True)
     cv = models.FileField(max_length=255, blank=True, null=False, default='')
@@ -100,15 +100,23 @@ class Developer(models.Model):
     modeReglement = models.CharField(max_length=255, blank=True, null=False)
     bankAccount = models.CharField(max_length=255, blank=True, null=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True, editable=False)
-    updated_at = models.DateTimeField(auto_now=True, blank=True, null=True, auto_created=True),
+    updated_at = models.DateTimeField(auto_now=True, blank=True, null=True, auto_created=True)
     # relations
     status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='developers', blank=True, null=True)
     address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='developer')
     skills = models.ManyToManyField(Skill, through='DeveloperSkill', related_name='developer')
+    # sex : maculin or feminin
+    sex = models.CharField(max_length=255, blank=True, null=True, default='maculin',
+                           choices=(('maculin', 'maculin'), ('feminin', 'feminin')))
 
     # auth
     def __str__(self):
         return self.name
+
+    # constuctor
+    def __init__(self, *args, **kwargs):
+        super(Developer, self).__init__(*args, **kwargs)
+        self.__original_status = self.status
 
 
 class DeveloperSkill(models.Model):
@@ -116,7 +124,7 @@ class DeveloperSkill(models.Model):
     developer = models.ForeignKey(Developer, on_delete=models.CASCADE, related_name='developer_skills')
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name='developer_skills')
     level = models.ForeignKey(Level, on_delete=models.CASCADE, related_name='developer_skills')
-    experience = models.IntegerField(max_length=255, blank=True, null=True)
+    experience = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return self.developer.name + " " + self.skill.name + " " + self.level.name
+        return self.skill.name + " : " + self.level.name

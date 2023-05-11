@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_admin_multi_select_filter.filters import MultiSelectFieldListFilter
 from djangoql.admin import DjangoQLSearchMixin
 from import_export.admin import ImportExportModelAdmin
 
@@ -39,10 +40,18 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
     list_display = ('name', 'email', 'phone', 'address', 'status', 'competences', 'created_at', 'updated_at')
     list_editable = ["email", "status", ]
     readonly_fields = ('created_at', 'updated_at')
+    list_filter = (
+        ('status__name', MultiSelectFieldListFilter),
+        ('address__country__name', MultiSelectFieldListFilter),
+        ('skills__name', MultiSelectFieldListFilter),
+        'sex',
+    )
+    filter_horizontal = ('skills',)
+    filter_vertical = ('skills',)
 
     def competences(self, obj):
-        #competence with level and experience
-        return DeveloperSkill.objects.filter(developer=obj).values_list('skill__name', 'level__name', 'experience')
+        # transform to str competence with level and experience
+        return ', '.join([f'{skill}' for skill in DeveloperSkill.objects.filter(developer=obj)])
 
 
 @admin.register(Config)

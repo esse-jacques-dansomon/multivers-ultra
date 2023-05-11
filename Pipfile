@@ -15,6 +15,7 @@ djangoql = "*"
 django-import-export = "*"
 djangorestframework-simplejwt = "*"
 groups = "*"
+django-admin-multi-select-filter = "*"
 
 [dev-packages]
 

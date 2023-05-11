@@ -34,11 +34,24 @@ class CountryAdmin(admin.ModelAdmin):
     list_display_links = None
 
 
+class CustomRelatedFieldListFilter(MultiSelectFieldListFilter):
+    title = ('Custom Status',)
+
+
+class CustomCountryFieldListFilter(MultiSelectFieldListFilter):
+    title = "Par pays"
+
+
+class CustomSkillsFieldListFilter(MultiSelectFieldListFilter):
+    title = ('Custom Skills',)
+
+
 @admin.register(Developer)
 class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
-    search_fields = ('skills__name',)
-    list_display = ('name', 'email', 'phone', 'address', 'status', 'competences', 'created_at', 'updated_at')
-    list_editable = ["email", "status", ]
+    search_fields = ('name',)
+    list_display = ('name', 'phone', 'address', 'status', 'competences', 'created_at', 'updated_at')
+    list_editable = ["status", ]
+
     readonly_fields = ('created_at', 'updated_at')
     list_filter = (
         ('status__name', MultiSelectFieldListFilter),
@@ -46,8 +59,6 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
         ('skills__name', MultiSelectFieldListFilter),
         'sex',
     )
-    filter_horizontal = ('skills',)
-    filter_vertical = ('skills',)
 
     def competences(self, obj):
         # transform to str competence with level and experience

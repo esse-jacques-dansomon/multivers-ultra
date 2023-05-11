@@ -51,18 +51,20 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
     search_fields = ('name',)
     list_display = ('name', 'phone', 'address', 'status', 'competences', 'created_at', 'updated_at')
     list_editable = ["status", ]
-
+    fields = ('tjm', 'annotations', 'status', 'availability', 'modeReglement',  'bankAccount')
     readonly_fields = ('created_at', 'updated_at')
     list_filter = (
         ('status__name', MultiSelectFieldListFilter),
         ('address__country__name', MultiSelectFieldListFilter),
         ('skills__name', MultiSelectFieldListFilter),
+        ('skills__category__name', MultiSelectFieldListFilter),
+        ('developer_skills__level__name', MultiSelectFieldListFilter),
         'sex',
     )
 
     def competences(self, obj):
         # transform to str competence with level and experience
-        return ', '.join([f'{skill}' for skill in DeveloperSkill.objects.filter(developer=obj)])
+        return ', '.join([f'{devSkill}' for devSkill in DeveloperSkill.objects.filter(developer=obj)])
 
 
 @admin.register(Config)

@@ -56,20 +56,20 @@ class Level(models.Model):
         return self.name
 
 
-class Skill(models.Model):
+class Status(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     code = models.CharField(max_length=255, blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='skills', blank=True, null=True)
 
     def __str__(self):
         return self.name
 
 
-class Status(models.Model):
+class Skill(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     code = models.CharField(max_length=255, blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='skills', blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -105,6 +105,7 @@ class Developer(models.Model):
     status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='developers', blank=True, null=True)
     address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='developer')
     skills = models.ManyToManyField(Skill, through='DeveloperSkill', related_name='developer')
+
     # sex : maculin or feminin
     sex = models.CharField(max_length=255, blank=True, null=True, default='maculin',
                            choices=(('maculin', 'maculin'), ('feminin', 'feminin')))
@@ -112,11 +113,6 @@ class Developer(models.Model):
     # auth
     def __str__(self):
         return self.name
-
-    # constuctor
-    def __init__(self, *args, **kwargs):
-        super(Developer, self).__init__(*args, **kwargs)
-        self.__original_status = self.status
 
 
 class DeveloperSkill(models.Model):

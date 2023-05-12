@@ -21,7 +21,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -35,11 +34,15 @@ ALLOWED_HOSTS = [
 
 ]
 
-
 # Application definition
 
 INSTALLED_APPS = [
-    "core",
+
+    "address",
+    "developer",
+    "config",
+    "skill",
+
     "rest_framework_simplejwt",
     "rest_framework",
     "django.contrib.admin",
@@ -50,9 +53,17 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     'import_export',
+    'djangoql',
 
+    # ...
+    "admin_interface",
+    "colorfield",
+    # ...
 
 ]
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
@@ -89,7 +100,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "ultra.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -107,7 +117,6 @@ DATABASES = {
     #     'PORT': env("DB_PORT"),
     # },
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -127,7 +136,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
@@ -144,7 +152,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -154,3 +161,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+MEDIA_URL = '/uploads/'

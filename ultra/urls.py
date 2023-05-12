@@ -14,12 +14,30 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from ultra import settings
+from ultra.settings import BASE_DIR
+from developer.views import DeveloperCreateView
+from skill.views import SkillCreateView
+from django.conf.urls.static import static
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads ')
+MEDIA_URL = '/static/uploads'
+
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-]
+                  # admin
+                  path("admin/", admin.site.urls),
+
+                  # auth
+                  path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+                  path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+                  # rest api
+                  path("api/rest/skills/", SkillCreateView.as_view(), name='skills'),
+                  path('api/rest/developers/', DeveloperCreateView.as_view(), name='developers'),
+              ] + static(settings.STATIC_URL, document_root=settings.MEDIA_URL)

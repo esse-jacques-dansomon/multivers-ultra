@@ -16,6 +16,8 @@ django-import-export = "*"
 djangorestframework-simplejwt = "*"
 groups = "*"
 django-admin-multi-select-filter = "*"
+pillow = "*"
+django-admin-interface = "*"
 
 [dev-packages]
 

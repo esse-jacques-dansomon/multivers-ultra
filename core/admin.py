@@ -62,6 +62,7 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
         'sex',
     )
 
+
     def competences(self, obj):
         # transform to str competence with level and experience
         return ', '.join([f'{devSkill}' for devSkill in DeveloperSkill.objects.filter(developer=obj)])

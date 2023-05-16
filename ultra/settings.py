@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 
     'import_export',
     'djangoql',
+    'more_admin_filters',
 
     # ...
     "admin_interface",

@@ -18,6 +18,7 @@ groups = "*"
 django-admin-multi-select-filter = "*"
 pillow = "*"
 django-admin-interface = "*"
+django-more-admin-filters = "*"
 
 [dev-packages]
 

@@ -1,0 +1,83 @@
+[
+  {
+    "model": "developer.language",
+    "pk": 1,
+    "fields": {
+      "name": "Français",
+      "code": "fr"
+    }
+  },
+  {
+    "model": "developer.language",
+    "pk": 2,
+    "fields": {
+      "name": "English",
+      "code": "en"
+    }
+  },
+  {
+    "model": "developer.language",
+    "pk": 3,
+    "fields": {
+      "name": "Español",
+      "code": "es"
+    }
+  },
+  {
+    "model": "developer.level",
+    "pk": 1,
+    "fields": {
+      "name": "Junior",
+      "order": 1
+    }
+  },
+  {
+    "model": "developer.level",
+    "pk": 2,
+    "fields": {
+      "name": "Intermediare",
+      "order": 2
+    }
+  },
+  {
+    "model": "developer.level",
+    "pk": 3,
+    "fields": {
+      "name": "Senior",
+      "order": 3
+    }
+  },
+  {
+    "model": "developer.level",
+    "pk": 4,
+    "fields": {
+      "name": "Expert",
+      "order": 4
+    }
+  },
+  {
+    "model": "developer.status",
+    "pk": 1,
+    "fields": {
+      "name": "No Lu",
+      "isDefault": true
+    }
+  },
+  {
+    "model": "developer.status",
+    "pk": 2,
+    "fields": {
+      "name": "Lu",
+      "isDefault": false
+    }
+  },
+  {
+    "model": "developer.status",
+    "pk": 3,
+    "fields": {
+      "name": "Retenu pour entretien",
+      "isDefault": false
+    }
+  }
+
+]

@@ -11,15 +11,10 @@ from formation.models import Project, ProjectInvoice, ProjectStatus, FormationDu
 @admin.register(Project)
 class ProjectAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
     list_display = ('name', 'status', 'formation', 'condition', 'dates', 'salePrice')
-    search_fields = ('name', 'status', 'formation', 'condition', 'dates', 'salePrice')
+    search_fields = ('name', 'status', 'condition', 'dates', 'salePrice')
     ordering = ('name', 'status', 'formation', 'condition', 'dates', 'salePrice')
-    filter_horizontal = ('developers', 'invoices')
-    # filter_vertical = ('developers', 'invoices')
-    list_filter = (
-        ('status__name', RelatedFieldListFilter),
-        ('formation__name', RelatedFieldListFilter),
-        ('d__name', RelatedFieldListFilter),
-    )
+    #filter_horizontal = ('developers', 'invoices')
+
 
 
 @admin.register(ProjectInvoice)

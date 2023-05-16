@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.admin import RelatedFieldListFilter
 from django_admin_multi_select_filter.filters import MultiSelectFieldListFilter
 from djangoql.admin import DjangoQLSearchMixin
 from import_export.admin import ImportExportModelAdmin
@@ -10,8 +9,6 @@ from developer.models import Developer, DeveloperSkill, Status, Level, Language
 class DeveloperSkillInline(admin.TabularInline):
     model = DeveloperSkill
     extra = 1
-
-
 
 
 # Register your models here.
@@ -72,3 +69,9 @@ class LevelAdmin(admin.ModelAdmin):
 class StatusAdmin(admin.ModelAdmin):
     list_display = ('name', 'isDefault',)
     list_editable = ["isDefault", ]
+
+
+@admin.register(Language)
+class LanguageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'code',)
+    list_editable = ["code", ]

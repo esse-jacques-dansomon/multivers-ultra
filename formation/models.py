@@ -57,7 +57,8 @@ class FormationDuration(models.Model):
     id = models.AutoField(primary_key=True)
     duration = models.CharField(max_length=255)
 
-    # relation
+    def __str__(self):
+        return self.duration + ' jours'
 
     class Meta:
         verbose_name = "Durée"
@@ -90,7 +91,7 @@ class Formation(models.Model):
     duration = models.ForeignKey(FormationDuration, on_delete=models.CASCADE, related_name='formations', blank=True,
                                  null=True)
     sliders = models.ManyToOneRel(FormationSlide, on_delete=models.CASCADE, to='FormationSlide', field_name='formation')
-    projects = models.ManyToManyField('Project', related_name='formations')
+    projects = models.ManyToOneRel('Project', to='Project', field_name='formation',on_delete=models.CASCADE, )
 
     class Meta:
         verbose_name = "Formation"

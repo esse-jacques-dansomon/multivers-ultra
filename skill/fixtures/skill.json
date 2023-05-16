@@ -1,0 +1,53 @@
+[
+    {
+        "model": "skill.skillcategory",
+        "pk": 1,
+        "fields": {
+            "name": "Frontend"
+        }
+    },
+    {
+        "model": "skill.skillcategory",
+        "pk": 2,
+        "fields": {
+            "name": "Backend"
+        }
+    },
+      {
+        "model": "skill.skillcategory",
+        "pk": 3,
+        "fields": {
+            "name": "DevOps"
+        }
+    },
+      {
+        "model": "skill.skillcategory",
+        "pk": 4,
+        "fields": {
+            "name": "Mobile"
+        }
+    },
+   {
+        "model": "skill.skillcategory",
+        "pk": 5,
+        "fields": {
+            "name": ""
+        }
+    },
+    {
+        "model": "skill.skill",
+        "pk": 1,
+        "fields": {
+            "name": "Flutter",
+            "category": 4
+        }
+    },
+    {
+        "model": "skill.skill",
+        "pk": 2,
+        "fields": {
+            "name": "Django",
+            "category": 2
+        }
+    }
+]

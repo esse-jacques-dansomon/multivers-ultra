@@ -1,0 +1,25 @@
+[
+    {
+        "model": "developer.status",
+        "pk": 1,
+        "fields": {
+            "name": "No Lu",
+            "isDefault": true
+        }
+    },
+    {
+        "model": "developer.status",
+        "pk": 2,
+        "fields": {
+            "name": "Lu"
+
+        }
+    },
+     {
+        "model": "developer.status",
+        "pk": 3,
+        "fields": {
+            "name": "Retenu pour entretien"
+        }
+    }
+]

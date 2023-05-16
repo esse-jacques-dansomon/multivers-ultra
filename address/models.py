@@ -7,7 +7,7 @@ from django.db import models
 
 class Country(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255, unique=True, verbose_name="pays")
     code = models.CharField(max_length=255, unique=True)
 
     def __str__(self):

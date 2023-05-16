@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "developer",
     "config",
     "skill",
+    "formation",
 
     "rest_framework_simplejwt",
     "rest_framework",

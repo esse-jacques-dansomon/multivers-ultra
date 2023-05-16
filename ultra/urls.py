@@ -40,4 +40,7 @@ urlpatterns = [
                   # rest api
                   path("api/rest/skills/", SkillCreateView.as_view(), name='skills'),
                   path('api/rest/developers/', DeveloperCreateView.as_view(), name='developers'),
-              ] + static(settings.STATIC_URL, document_root=settings.MEDIA_URL)
+              ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -11,8 +11,8 @@ class Project(models.Model):
     salePrice = models.CharField(max_length=255)
     comments = models.TextField(null=True, blank=True)
     # files
-    bonOrder = models.FileField(upload_to='projects/', null=True, blank=True)
-    invoiceDev = models.FileField(upload_to='projects/', null=True, blank=True)
+    bonOrder = models.FileField(upload_to='projects/bon_commandes/%Y/%m/%d/', null=True, blank=True)
+    invoiceDev = models.FileField(upload_to='projects/invoices_dev/%Y/%m/%d/', null=True, blank=True)
     invoices = models.ManyToManyField('ProjectInvoice', related_name='projects')
 
     condition = models.CharField(max_length=255, null=True, default='',
@@ -30,7 +30,7 @@ class Project(models.Model):
 class ProjectInvoice(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, verbose_name="Facture")
-    file = models.FileField(upload_to='invoices/', null=True, blank=True)
+    file = models.FileField(upload_to='invoices/%Y/%m/%d/', null=True, blank=True)
     project = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='invoice')
 
     def __str__(self):
@@ -67,7 +67,7 @@ class FormationDuration(models.Model):
 
 class FormationSlide(models.Model):
     id = models.AutoField(primary_key=True)
-    slide = models.ImageField(upload_to='formations/', null=True, blank=True)
+    slide = models.ImageField(upload_to='formations/%Y/%m/%d/', null=True, blank=True)
     # relation
     formation = models.ForeignKey('Formation', on_delete=models.CASCADE, related_name='slides')
 
@@ -118,7 +118,7 @@ class Contact(models.Model):
 
 class Partner(models.Model):
     id = models.AutoField(primary_key=True)
-    logo = models.ImageField(upload_to='partners/', null=True, blank=True)
+    logo = models.ImageField(upload_to='partners/%Y/%m/%d/', null=True, blank=True)
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):

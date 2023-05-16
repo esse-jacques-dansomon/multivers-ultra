@@ -71,9 +71,9 @@ class Developer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True,  blank=True,null=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True,  blank=True,null=True, auto_created=True)
     # Files ...
-    cv = models.FileField(upload_to='cv/', max_length=255,  null=False, default='', help_text="CV du développeur")
-    photo = models.ImageField(upload_to='photos/', max_length=255,  null=False, default='', help_text="Photo du développeur")
-    video = models.FileField(upload_to='videos/', max_length=255,  blank=True,null=True, default='', help_text="Video du développeur")
+    cv = models.FileField(upload_to='developers/cv/%Y/%m/%d/', max_length=255,  null=False, default='', help_text="CV du développeur")
+    photo = models.ImageField(upload_to='developers/photos/%Y/%m/%d/', max_length=255,  null=False, default='', help_text="Photo du développeur")
+    video = models.FileField(upload_to='developers/videos/%Y/%m/%d/', max_length=255,  blank=True,null=True, default='', help_text="Video du développeur")
     # relations
     status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='developers',  null=True)
     address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='developer')

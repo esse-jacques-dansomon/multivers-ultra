@@ -1,13 +1,9 @@
 from django.contrib import admin
 
-from address.models import Address, Country
+from address.models import  Country
 
 
-# Register your models here.
-@admin.register(Address)
-class AddressAdmin(admin.ModelAdmin):
-    list_display = ('name', 'city', 'street', 'country')
-    list_editable = ["city", "street", "country"]
+# Register your models here
 
 
 @admin.register(Country)

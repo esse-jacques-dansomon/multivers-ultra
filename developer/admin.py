@@ -1,8 +1,10 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from django_admin_multi_select_filter.filters import MultiSelectFieldListFilter
 from djangoql.admin import DjangoQLSearchMixin
 from import_export.admin import ImportExportModelAdmin
 
+from address.models import Address
 from developer.models import Developer, DeveloperSkill, Status, Level, Language
 
 
@@ -19,7 +21,7 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
     list_filter = (
         ('status__name', MultiSelectFieldListFilter),
-        ('address__country__name', MultiSelectFieldListFilter),
+        ('country__name', MultiSelectFieldListFilter),
         ('skills__name', MultiSelectFieldListFilter),
         ('skills__category__name', MultiSelectFieldListFilter),
         ('developer_skills__level__name', MultiSelectFieldListFilter),
@@ -39,23 +41,32 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
         return obj.firstName
 
     def nom(self, obj):
-        return obj.lastName
+        return obj.name
 
     def avatar(self, obj):
-        # create hmtl for the photo
-        return f'<img src="{obj.photo.url}" width="50" height="50" />'
+        if obj.photo:
+            return format_html('<img src="{}" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%;">',
+                               obj.photo.url)
+        return None
+
+    avatar.short_description = 'Avatar'
 
     def whatsapp(self, obj):
-        # https://wa.me/22507070707
-        return f'https://wa.me/{obj.whatsApp}' if obj.whatsApp else None
+        if obj.whatsApp:
+            return format_html('<a href="https://wa.me/{0}">{0}</a>', obj.whatsApp)
+        return None
 
     def email(self, obj):
-        # mailto:email
-        return f'mailto:{obj.email}' if obj.email else None
+        if obj.email:
+            return format_html('<a href="mailto:{0}">{0}</a>', obj.email)
+        return None
 
     def tel(self, obj):
-        # phone:tel
-        return f'phone:{obj.phone}' if obj.phone else None
+        if obj.phone:
+            return format_html('<a href="tel:{0}">{0}</a>', obj.phone)
+        return None
+    def address(self, obj):
+        return f'{obj.address} {obj.country}' if obj.address else None
 
 
 @admin.register(Level)

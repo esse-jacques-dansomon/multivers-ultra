@@ -21,10 +21,11 @@ class Country(models.Model):
 
 class Address(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    street = models.CharField(max_length=255)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, )
+    name = models.CharField(max_length=255, verbose_name="Adresse")
+    city = models.CharField(max_length=255, verbose_name="Ville")
+    street = models.CharField(max_length=255, verbose_name="Rue")
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name="Pays", related_name='addresses',
+                                related_query_name='address')
 
     def __str__(self):
         return self.country.name + " " + self.city + " " + self.street

@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     'djangoql',
     'more_admin_filters',
     'dbbackup',  # django-dbbackup
-    'django_cron',
     'django_crontab',
 ]
 
@@ -166,7 +165,7 @@ CRON_CLASSES = [
 ]
 
 CRONJOBS = [
-    ('*/1 * * * *', 'config.cron.my_scheduled_job')
+    ('*/5 */12 */30 * *', 'config.cron.my_scheduled_job')
 ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.Scom/en/4.2/howto/static-files/

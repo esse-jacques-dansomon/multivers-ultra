@@ -47,6 +47,7 @@ $ source .venv/bin/activate
 (.venv) $ python manage.py createsuperuser
 (.venv) $ python manage.py runserver
 (.venv) $ python manage.py loaddata addresses.json developers.json skills.json formation.json
+(.venv) $ python manage.py crontab add
 # Load the site at http://127.0.0.1:8000
 ```
 

@@ -7,3 +7,4 @@ from config.models import Config
 class ConfigAdmin(admin.ModelAdmin):
     list_display = ('name', 'value',)
     list_editable = ["value", ]
+

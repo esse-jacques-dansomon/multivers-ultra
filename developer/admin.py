@@ -15,7 +15,7 @@ class DeveloperSkillInline(admin.TabularInline):
 
 # Register your models here.
 @admin.register(Developer)
-class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+class DeveloperAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_display = ('avatar', 'nom', 'tel', 'mail', 'whatsapp', 'langues', 'addresse', 'competences', 'tjm')
     readonly_fields = ('created_at', 'updated_at')
@@ -26,6 +26,34 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
         ('skills__category__name', MultiSelectFieldListFilter),
         ('developer_skills__level__name', MultiSelectFieldListFilter),
         'sex',
+    )
+    fieldsets = (
+        ('Informations personnelles', {
+            'classes': ('collapse',),
+            'fields': ('name', 'firstName', 'sex', 'phone', 'email', 'fixTel', 'address', 'country')
+        }),
+        ('Fichiers', {
+            'classes': ('collapse',),
+            'fields': ('cv', 'photo', 'video')
+        }),
+        ('Réseaux sociaux', {
+             'classes': ('collapse',),
+            'fields': (
+            'whatsApp', 'otherCanal', 'linkedin', 'instagram', 'facebook', 'github', 'gitlab', 'bitbucket', 'website')
+        }),
+        ('Tarification', {
+            'classes': ('collapse',),
+            'fields': ('tjm', 'modeReglement', 'bankAccount')
+        }),
+        ('Autres informations', {
+            'classes': ('collapse',),
+            'fields': ('status', 'languages', 'annotations', 'availability')
+        }),
+
+        ('Dates', {
+            'classes': ('collapse',),
+            'fields': ('created_at', 'updated_at')
+        }),
     )
     inlines = [DeveloperSkillInline]
 

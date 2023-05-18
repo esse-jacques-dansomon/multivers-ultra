@@ -23,6 +23,102 @@
       "code": "es"
     }
   },
+    {
+        "model": "developer.language",
+        "pk": 4,
+        "fields": {
+        "name": "Deutsch",
+        "code": "de"
+        }
+    },
+    {
+        "model": "developer.language",
+        "pk": 5,
+        "fields": {
+        "name": "Italiano",
+        "code": "it"
+        }
+    },
+    {
+        "model": "developer.language",
+        "pk": 6,
+        "fields": {
+        "name": "Português",
+        "code": "pt"
+        }
+    },
+    {
+        "model": "developer.language",
+        "pk": 7,
+        "fields": {
+        "name": "Nederlands",
+        "code": "nl"
+        }
+    },
+    {
+        "model": "developer.language",
+        "pk": 8,
+        "fields": {
+        "name": "Polski",
+        "code": "pl"
+        }
+    },
+    {
+        "model": "developer.language",
+        "pk": 9,
+        "fields": {
+        "name": "Русский",
+        "code": "ru"
+        }
+    },
+    {
+        "model": "developer.language",
+        "pk": 10,
+        "fields": {
+        "name": "日本語",
+        "code": "ja"
+        }
+    },
+    {
+        "model": "developer.language",
+        "pk": 11,
+        "fields": {
+        "name": "中文",
+        "code": "zh"
+        }
+    },
+    {
+        "model": "developer.language",
+        "pk": 12,
+        "fields": {
+        "name": "한국어",
+        "code": "ko"
+        }
+    },
+    {
+        "model": "developer.language",
+        "pk": 13,
+        "fields": {
+        "name": "العربية",
+        "code": "ar"
+        }
+    },
+    {
+        "model": "developer.language",
+        "pk": 14,
+        "fields": {
+        "name": "हिन्दी",
+        "code": "hi"
+        }
+    },
+    {
+        "model": "developer.language",
+        "pk": 15,
+        "fields": {
+        "name": "עברית",
+        "code": "he"
+        }
+    },
   {
     "model": "developer.level",
     "pk": 1,

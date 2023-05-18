@@ -14,5 +14,101 @@
             "name": "Côte d'Ivoire",
             "code": "225"
         }
+    },
+    {
+        "model": "address.country",
+        "pk": 3,
+        "fields": {
+            "name": "Mali",
+            "code": "223"
+        }
+    },
+    {
+        "model": "address.country",
+        "pk": 4,
+        "fields": {
+            "name": "Guinée",
+            "code": "224"
+        }
+    },
+    {
+        "model": "address.country",
+        "pk": 5,
+        "fields": {
+            "name": "Burkina Faso",
+            "code": "226"
+        }
+    },
+    {
+        "model": "address.country",
+        "pk": 6,
+        "fields": {
+            "name": "Togo",
+            "code": "228"
+        }
+    },
+    {
+        "model": "address.country",
+        "pk": 7,
+        "fields": {
+            "name": "Bénin",
+            "code": "229"
+        }
+    },
+    {
+        "model": "address.country",
+        "pk": 8,
+        "fields": {
+            "name": "Niger",
+            "code": "227"
+        }
+    },
+    {
+        "model": "address.country",
+        "pk": 9,
+        "fields": {
+            "name": "Ghana",
+            "code": "233"
+        }
+    },
+    {
+        "model": "address.country",
+        "pk": 10,
+        "fields": {
+            "name": "Nigeria",
+            "code": "234"
+        }
+    },
+    {
+        "model": "address.country",
+        "pk": 11,
+        "fields": {
+            "name": "Cameroun",
+            "code": "237"
+        }
+    },
+    {
+        "model": "address.country",
+        "pk": 12,
+        "fields": {
+            "name": "Gabon",
+            "code": "241"
+        }
+    },
+    {
+        "model": "address.country",
+        "pk": 13,
+        "fields": {
+            "name": "Congo",
+            "code": "242"
+        }
+    },
+    {
+        "model": "address.country",
+        "pk": 14,
+        "fields": {
+            "name": "République Démocratique du Congo",
+            "code": "243"
+        }
     }
 ]

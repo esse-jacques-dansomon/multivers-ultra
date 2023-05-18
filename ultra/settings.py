@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'more_admin_filters',
     'dbbackup',  # django-dbbackup
     'django_cron',
+    'django_crontab',
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -162,6 +163,10 @@ DBBACKUP_CLEANUP_KEEP = 2  # optional number of backups to keep
 
 CRON_CLASSES = [
     'config.cron.BackupCronJob',  # Update with the actual path to your BackupCronJob
+]
+
+CRONJOBS = [
+    ('*/1 * * * *', 'config.cron.my_scheduled_job')
 ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.Scom/en/4.2/howto/static-files/

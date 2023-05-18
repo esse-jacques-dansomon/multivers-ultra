@@ -160,9 +160,6 @@ DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': BACKUP_DIR}
 DBBACKUP_CLEANUP_KEEP = 2  # optional number of backups to keep
 
-CRON_CLASSES = [
-    'config.cron.BackupCronJob',  # Update with the actual path to your BackupCronJob
-]
 
 CRONJOBS = [
     ('*/5 */12 */30 * *', 'config.cron.my_scheduled_job')
@@ -173,7 +170,6 @@ CRONJOBS = [
 STATIC_URL = "static/"
 STATIC_ROOT = Path(BASE_DIR).joinpath('staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

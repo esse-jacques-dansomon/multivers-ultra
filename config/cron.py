@@ -1,5 +1,4 @@
 from django.core.management import call_command
-from django_cron import CronJobBase, Schedule
 
 
 # class BackupCronJob(CronJobBase):

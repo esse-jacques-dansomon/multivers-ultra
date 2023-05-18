@@ -13,6 +13,7 @@ import os
 from datetime import timedelta
 
 import environ
+from django.contrib import staticfiles
 
 env = environ.Env()
 environ.Env.read_env()

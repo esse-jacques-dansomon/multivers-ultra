@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from address.models import  Country
+from address.models import Country
 
 
 # Register your models here

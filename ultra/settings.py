@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'import_export',
     'djangoql',
     'more_admin_filters',
+    'dbbackup',  # django-dbbackup
+    'django_cron',
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -104,19 +106,19 @@ WSGI_APPLICATION = "ultra.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # }
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
-        'OPTIONS': {'sslmode': 'require'},
-    },
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': env("DB_NAME"),
+    #     'USER': env("DB_USER"),
+    #     'PASSWORD': env("DB_PASSWORD"),
+    #     'HOST': env("DB_HOST"),
+    #     'PORT': env("DB_PORT"),
+    #     # 'OPTIONS': {'sslmode': 'require'},
+    # },
 }
 
 # Password validation
@@ -153,8 +155,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+BACKUP_DIR = os.path.join(BASE_DIR, 'backup/')
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BACKUP_DIR}
+DBBACKUP_CLEANUP_KEEP = 2  # optional number of backups to keep
+
+CRON_CLASSES = [
+    'config.cron.BackupCronJob',  # Update with the actual path to your BackupCronJob
+]
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
+# https://docs.djangoproject.Scom/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
 STATIC_ROOT = Path(BASE_DIR).joinpath('staticfiles')

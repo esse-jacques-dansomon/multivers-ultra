@@ -19,6 +19,8 @@ django-admin-multi-select-filter = "*"
 pillow = "*"
 django-admin-interface = "*"
 django-more-admin-filters = "*"
+bidict = "==0.22.1"
+django-cron = "*"
 
 [dev-packages]
 

@@ -17,7 +17,7 @@ class DeveloperSkillInline(admin.TabularInline):
 @admin.register(Developer)
 class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
     search_fields = ('name',)
-    list_display = ('avatar', 'nom', 'prenom', 'langues', 'whatsapp', 'address', 'competences', 'tjm')
+    list_display = ('avatar', 'nom', 'tel', 'mail', 'whatsapp', 'langues', 'addresse', 'competences', 'tjm')
     readonly_fields = ('created_at', 'updated_at')
     list_filter = (
         ('status__name', MultiSelectFieldListFilter),
@@ -37,11 +37,8 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
         # transform to str competence with level and experience
         return ', '.join([f'{langue}' for langue in Language.objects.filter(developer=obj)])
 
-    def prenom(self, obj):
-        return obj.firstName
-
     def nom(self, obj):
-        return obj.name
+        return obj.name + ' ' + obj.firstName
 
     def avatar(self, obj):
         if obj.photo:
@@ -56,7 +53,7 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
             return format_html('<a href="https://wa.me/{0}">{0}</a>', obj.whatsApp)
         return None
 
-    def email(self, obj):
+    def mail(self, obj):
         if obj.email:
             return format_html('<a href="mailto:{0}">{0}</a>', obj.email)
         return None
@@ -65,7 +62,8 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
         if obj.phone:
             return format_html('<a href="tel:{0}">{0}</a>', obj.phone)
         return None
-    def address(self, obj):
+
+    def addresse(self, obj):
         return f'{obj.address} {obj.country}' if obj.address else None
 
 

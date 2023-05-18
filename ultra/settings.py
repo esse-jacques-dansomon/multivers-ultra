@@ -47,6 +47,10 @@ INSTALLED_APPS = [
 
     "rest_framework_simplejwt",
     "rest_framework",
+    # ...
+    "admin_interface",
+    "colorfield",
+    # ...
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -57,12 +61,6 @@ INSTALLED_APPS = [
     'import_export',
     'djangoql',
     'more_admin_filters',
-
-    # ...
-    "admin_interface",
-    "colorfield",
-    # ...
-
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -159,7 +157,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
-
+STATIC_ROOT = Path(BASE_DIR).joinpath('staticfiles')
+STATICFILES_DIRS = (Path(BASE_DIR).joinpath('static'),)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

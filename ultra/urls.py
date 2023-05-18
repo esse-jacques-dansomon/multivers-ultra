@@ -28,7 +28,7 @@ from django.conf.urls.static import static
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads ')
 MEDIA_URL = '/static/uploads'
-
+admin.site.site_header = "Ultra Admin"
 urlpatterns = [
                   # admin
                   path("admin/", admin.site.urls),

@@ -168,7 +168,7 @@ CRONJOBS = [
 # https://docs.djangoproject.Scom/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = Path(BASE_DIR).joinpath('/static/')
+STATIC_ROOT = Path(BASE_DIR).joinpath('staticfiles')
 STATICFILES_DIRS = [
 ]
 # Default primary key field type

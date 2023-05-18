@@ -1,0 +1,15 @@
+django==4.2.1
+django-environ
+psycopg2
+psycopg
+djangorestframework
+routes
+controller
+djangoql
+django-import-export
+djangorestframework-simplejwt
+groups
+django-admin-multi-select-filter
+pillow
+django-admin-interface
+django-more-admin-filters

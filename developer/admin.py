@@ -5,11 +5,16 @@ from djangoql.admin import DjangoQLSearchMixin
 from import_export.admin import ImportExportModelAdmin
 
 from address.models import Address
-from developer.models import Developer, DeveloperSkill, Status, Level, Language
+from developer.models import Developer, DeveloperSkill, Status, Level, Language, Experience
 
 
 class DeveloperSkillInline(admin.TabularInline):
     model = DeveloperSkill
+    extra = 1
+
+
+class ExperienceInline(admin.StackedInline):
+    model = Experience
     extra = 1
 
 
@@ -37,9 +42,10 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
             'fields': ('cv', 'photo', 'video')
         }),
         ('Réseaux sociaux', {
-             'classes': ('collapse',),
+            'classes': ('collapse',),
             'fields': (
-            'whatsApp', 'otherCanal', 'linkedin', 'instagram', 'facebook', 'github', 'gitlab', 'bitbucket', 'website')
+                'whatsApp', 'otherCanal', 'linkedin', 'instagram', 'facebook', 'github', 'gitlab', 'bitbucket',
+                'website')
         }),
         ('Tarification', {
             'classes': ('collapse',),
@@ -55,7 +61,7 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
             'fields': ('created_at', 'updated_at')
         }),
     )
-    inlines = [DeveloperSkillInline]
+    inlines = [DeveloperSkillInline, ExperienceInline]
 
     def competences(self, obj):
         # transform to str competence with level and experience

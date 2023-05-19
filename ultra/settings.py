@@ -172,7 +172,6 @@ STATIC_ROOT = Path(BASE_DIR).joinpath('staticfiles')
 if DEBUG:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static'),
-        os.path.join(BASE_DIR, 'media')
     ]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')

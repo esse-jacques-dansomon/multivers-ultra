@@ -15,7 +15,7 @@ class DeveloperSkillInline(admin.TabularInline):
 
 # Register your models here.
 @admin.register(Developer)
-class DeveloperAdmin(admin.ModelAdmin):
+class DeveloperAdmin(DjangoQLSearchMixin):
     search_fields = ('name',)
     list_display = ('avatar', 'nom', 'tel', 'mail', 'whatsapp', 'langues', 'addresse', 'competences', 'tjm')
     readonly_fields = ('created_at', 'updated_at')

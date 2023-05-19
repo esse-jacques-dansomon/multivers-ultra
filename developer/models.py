@@ -54,7 +54,8 @@ class Experience(models.Model):
     address = models.CharField(max_length=255, null=False, blank=False, verbose_name="adresse")
     startDate = models.DateField(null=False, blank=False, verbose_name="date de début")
     endDate = models.DateField(null=True, blank=True, verbose_name="date de fin")
-    isCurrent = models.BooleanField(default=False, verbose_name="actuel", help_text="cocher si c'est l'expérience actuelle", blank=True, null=True)
+    isCurrent = models.BooleanField(default=False, verbose_name="actuel",
+                                    help_text="cocher si c'est l'expérience actuelle", blank=True, null=True)
     description = models.TextField(null=False, blank=False, verbose_name="description")
     developer = models.ForeignKey('Developer', on_delete=models.CASCADE, blank=False, null=False)
 
@@ -139,7 +140,7 @@ class DeveloperSkill(models.Model):
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name='developer_skills',
                               verbose_name="Competence")
     level = models.ForeignKey(Level, on_delete=models.CASCADE, related_name='developer_skills', verbose_name="Niveau")
-    experience = models.IntegerField(null=False, blank=True, verbose_name="Experience", default=0)
+    experience = models.IntegerField(null=False, blank=True, verbose_name="Année Experience", default=0)
 
     def __str__(self):
         return self.skill.name + " : " + self.level.name

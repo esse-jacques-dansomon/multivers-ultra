@@ -64,8 +64,17 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
     inlines = [DeveloperSkillInline, ExperienceInline]
 
     def competences(self, obj):
-        # transform to str competence with level and experience
-        return ', '.join([f'{devSkill}' for devSkill in DeveloperSkill.objects.filter(developer=obj)])
+        # Get DeveloperSkill objects for the developer
+        dev_skills = DeveloperSkill.objects.filter(developer=obj)
+
+        # Generate the string representation for each DeveloperSkill
+        competence_strings = []
+        for dev_skill in dev_skills:
+            competence_strings.append(
+                f'{dev_skill.skill} - Level: {dev_skill.level}, Experience: {dev_skill.experience} ans')
+
+        # Join the competence strings with new lines
+        return ',\n'.join(competence_strings)
 
     def langues(self, obj):
         # transform to str competence with level and experience

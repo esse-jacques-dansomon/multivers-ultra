@@ -59,7 +59,8 @@ class Experience(models.Model):
     isCurrent = models.BooleanField(default=False, verbose_name="actuel",
                                     help_text="cocher si c'est l'expérience actuelle", blank=True, null=True)
     description = models.TextField(null=False, blank=False, verbose_name="description")
-    developer = models.ForeignKey('Developer', related_name='experiences',  on_delete=models.CASCADE, blank=False, null=False)
+    developer = models.ForeignKey('Developer', related_name='experiences', on_delete=models.CASCADE, blank=False,
+                                  null=False)
 
     def __str__(self):
         return self.title
@@ -79,12 +80,13 @@ class Developer(models.Model):
                               verbose_name="Email")
     fixTel = models.CharField(max_length=255, blank=True, null=True, help_text="Téléphone fixe du développeur",
                               verbose_name="Téléphone fixe")
-    address = models.CharField(max_length=255, help_text="Adresse du développeur", verbose_name="Adresse")
+    address = models.CharField(max_length=255, help_text="Adresse du développeur", verbose_name="Adresse", null=False,
+                               blank=False)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name="Pays", related_name='developers',
-                                related_query_name='developer')
+                                related_query_name='developer', null=False, blank=False)
     # Files ...
     cv = models.FileField(upload_to='developers/cvs/%Y/%m/%d/', max_length=255, null=False,
-                          help_text="CV du développeur")
+                          help_text="CV du développeur" )
     photo = models.ImageField(upload_to='developers/photos/%Y/%m/%d/', max_length=255, null=False,
                               help_text="Photo du développeur")
     video = models.FileField(upload_to='developers/videos/%Y/%m/%d/', max_length=255, blank=True, null=True,
@@ -105,7 +107,7 @@ class Developer(models.Model):
                                 help_text="BitBucket du développeur")
     website = models.URLField(max_length=255, unique=True, blank=True, null=True, help_text="Site web du développeur",
                               verbose_name="Site web")
-    devise = models.CharField(max_length=255, blank=True, null=False, help_text="Devise du développeur",)
+    devise = models.CharField(max_length=255, blank=True, null=False, help_text="Devise du développeur", )
     tjm = models.IntegerField(blank=True, null=True, help_text="TJM du développeur")
     annotations = models.TextField(null=False, blank=True, help_text="Annotations du développeur")
     availability = models.TextField(null=False, blank=True, help_text="Disponibilité du développeur",
@@ -120,12 +122,13 @@ class Developer(models.Model):
                                       verbose_name="Date de modification")
 
     # relations
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='developers', null=True)
+    status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='developers', null=False,
+                               default=Status.objects.get(isDefault=True).id)
     languages = models.ManyToManyField(Language, related_name='developer')
     # sex : maculin or feminin
     sexe = models.CharField(max_length=255, null=False, default='maculin',
-                           choices=(('maculin', 'maculin'), ('feminin', 'feminin')))
-   # auth
+                            choices=(('maculin', 'maculin'), ('feminin', 'feminin')))
+    # auth
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
@@ -139,17 +142,17 @@ class Developer(models.Model):
     # create user profile when developer is created
 
 
-
 @receiver(post_save, sender=Developer)
 def create_user(sender, instance, created, **kwargs):
-    print("create user")
     if created and not instance.user:
         # Generate a unique username based on the developer's name
         username = f"{instance.firstName.lower()}.{instance.name.lower()}"
 
         # Create a user with the generated username and a random password
         user = User.objects.create_user(username=username, password=User.objects.make_random_password(),
-                                        email=instance.email)
+                                        email=instance.email,
+                                        first_name=instance.firstName, last_name=instance.name
+                                        )
 
         # Assign the created user to the developer's user field
         instance.user = user

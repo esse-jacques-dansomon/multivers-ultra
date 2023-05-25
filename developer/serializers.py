@@ -19,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class DeveloperSerializer(serializers.ModelSerializer):
-    user = serializers.SerializerMethodField()
+    # user = serializers.SerializerMethodField()
     experiences = serializers.SerializerMethodField()
     languages = serializers.SerializerMethodField()
     country = serializers.SerializerMethodField()

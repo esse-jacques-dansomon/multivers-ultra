@@ -22,7 +22,23 @@ def developer_list(request):
     elif request.method == 'POST':
         serializer = DeveloperSerializer(data=request.data)
         if serializer.is_valid():
+            #verify if the request has a password
+            if 'password' not in request.data:
+                return Response({'error': 'Password field is required'}, status=status.HTTP_400_BAD_REQUEST)
+            #verify if the request has a country
+            if 'country' not in request.data:
+                return Response({'error': 'Country field is required'}, status=status.HTTP_400_BAD_REQUEST)
+            #verify if the request has a languages
+            if 'languages' not in request.data:
+                return Response({'error': 'Languages field is required'}, status=status.HTTP_400_BAD_REQUEST)
+
             serializer.save()
+            developer = Developer.objects.get(pk=serializer.data['id'])
+            #create user
+            #update password
+            #languages
+            #add skills
+            #add experiences
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

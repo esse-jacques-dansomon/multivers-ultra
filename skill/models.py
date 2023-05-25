@@ -11,7 +11,7 @@ class SkillCategory(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['name']
+        ordering = ['id']
         verbose_name_plural = "Categories de competences"
         verbose_name = "Categorie de competence"
 

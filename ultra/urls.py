@@ -16,11 +16,14 @@ Including another URLconf
 """
 import os
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_swagger.views import get_swagger_view
 
-from developer import views
+import skill
+from address.views import CountryListView, CountryDetailView
+from developer import views as developer_views
+from skill.views import SkillListView, SkillDetailView, SkillCategoryDetails, SkillCategoryListView
 from ultra import settings
 from ultra.settings import BASE_DIR
 from django.conf.urls.static import static
@@ -41,11 +44,18 @@ urlpatterns = [
     path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     # rest api
-    path('api/developers', views.developer_list, name='developer_list'),
-    path('api/developers/<int:pk>', views.developer_detail, name='developer_detail'),
-    path('api/languages', views.language_list, name='language_list'),
-    path('api/status', views.status_list, name='status_list'),
-    path('api/levels', views.level_list, name='level_list'),
+    path('api/developers', developer_views.developer_list, name='developer_list'),
+    path('api/developers/<int:pk>', developer_views.developer_detail, name='developer_detail'),
+    path('api/languages', developer_views.language_list, name='language_list'),
+    path('api/status', developer_views.status_list, name='status_list'),
+    path('api/levels', developer_views.level_list, name='level_list'),
+    path('api/countries', CountryListView.as_view(), name='country_list'),
+    path('api/countries/<int:country_id>', CountryDetailView.as_view(), name='country_detail'),
+    path('api/skills', SkillListView.as_view(), name='skill_list'),
+    path('api/skills/<int:skill_id>', SkillDetailView.as_view(), name='skill_detail'),
+    path('api/skill-categories', SkillCategoryListView.as_view(), name='skill_category_list'),
+    path('api/skill-categories/<int:pk>', SkillCategoryDetails.as_view(), name='skill_category_list'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

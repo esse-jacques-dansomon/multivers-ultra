@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from address.models import Country, Address
-from developper.models import Developer, Level
+from address.models import Country
 
 
 class CountrySerializer(serializers.ModelSerializer):
@@ -9,8 +8,3 @@ class CountrySerializer(serializers.ModelSerializer):
         model = Country
         fields = '__all__'
 
-
-class AddressSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Address
-        fields = '__all__'

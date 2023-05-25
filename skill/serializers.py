@@ -16,10 +16,9 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class SkillSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+
     class Meta:
         model = Skill
         fields = '__all__'
-
-

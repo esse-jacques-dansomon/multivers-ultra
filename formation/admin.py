@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from django.contrib.admin import RelatedFieldListFilter
 from djangoql.admin import DjangoQLSearchMixin
 from import_export.admin import ImportExportModelAdmin
 
@@ -13,8 +12,7 @@ class ProjectAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
     list_display = ('name', 'status', 'formation', 'condition', 'dates', 'salePrice')
     search_fields = ('name', 'status', 'condition', 'dates', 'salePrice')
     ordering = ('name', 'status', 'formation', 'condition', 'dates', 'salePrice')
-    #filter_horizontal = ('developers', 'invoices')
-
+    # filter_horizontal = ('developers', 'invoices')
 
 
 @admin.register(ProjectInvoice)
@@ -42,8 +40,8 @@ class PartnerContactInline(admin.TabularInline):
 
 @admin.register(Partner)
 class PartnerAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
-    list_display = ('logo', )
-    search_fields = ('logo', )
+    list_display = ('logo',)
+    search_fields = ('logo',)
 
 
 @admin.register(Formation)

@@ -4,7 +4,6 @@ from django_admin_multi_select_filter.filters import MultiSelectFieldListFilter
 from djangoql.admin import DjangoQLSearchMixin
 from import_export.admin import ImportExportModelAdmin
 
-from address.models import Address
 from developer.models import Developer, DeveloperSkill, Status, Level, Language, Experience
 
 
@@ -27,15 +26,15 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
     list_filter = (
         ('status__name', MultiSelectFieldListFilter),
         ('country__name', MultiSelectFieldListFilter),
-        ('skills__name', MultiSelectFieldListFilter),
-        ('skills__category__name', MultiSelectFieldListFilter),
+        ('developer_skills__skill__name', MultiSelectFieldListFilter),
+        ('developer_skills__skill__category__name', MultiSelectFieldListFilter),
         ('developer_skills__level__name', MultiSelectFieldListFilter),
-        'sex',
+        'sexe',
     )
     fieldsets = (
         ('Informations personnelles', {
             'classes': ('collapse',),
-            'fields': ('name', 'firstName', 'sex', 'phone', 'email', 'fixTel', 'address', 'country')
+            'fields': ('name', 'firstName', 'sexe', 'phone', 'email', 'fixTel', 'address', 'country')
         }),
         ('Fichiers', {
             'classes': ('collapse',),
@@ -49,17 +48,13 @@ class DeveloperAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
         }),
         ('Tarification', {
             'classes': ('collapse',),
-            'fields': ('tjm', 'modeReglement', 'bankAccount')
+            'fields': ('tjm', 'devise', 'modeReglement', 'bankAccount')
         }),
         ('Autres informations', {
             'classes': ('collapse',),
             'fields': ('status', 'languages', 'annotations', 'availability')
         }),
 
-        ('Dates', {
-            'classes': ('collapse',),
-            'fields': ('created_at', 'updated_at')
-        }),
     )
     inlines = [DeveloperSkillInline, ExperienceInline]
 
@@ -125,5 +120,6 @@ class StatusAdmin(admin.ModelAdmin):
 
 @admin.register(Language)
 class LanguageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'code',)
-    list_editable = ["code", ]
+    list_display = ('name', )
+    list_editable = ["name", ]
+    list_display_links = None

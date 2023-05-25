@@ -1,6 +1,9 @@
 from django.db import models
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
 
-from address.models import Address, Country
+from address.models import Country
+from config.models import DeveloperProxy, User
 from skill.models import Skill
 
 
@@ -36,7 +39,6 @@ class Status(models.Model):
 class Language(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, null=False, unique=True, verbose_name="langue")
-    code = models.CharField(max_length=255, null=False)
 
     def __str__(self):
         return self.name
@@ -57,7 +59,7 @@ class Experience(models.Model):
     isCurrent = models.BooleanField(default=False, verbose_name="actuel",
                                     help_text="cocher si c'est l'expérience actuelle", blank=True, null=True)
     description = models.TextField(null=False, blank=False, verbose_name="description")
-    developer = models.ForeignKey('Developer', on_delete=models.CASCADE, blank=False, null=False)
+    developer = models.ForeignKey('Developer', related_name='experiences',  on_delete=models.CASCADE, blank=False, null=False)
 
     def __str__(self):
         return self.title
@@ -103,6 +105,7 @@ class Developer(models.Model):
                                 help_text="BitBucket du développeur")
     website = models.URLField(max_length=255, unique=True, blank=True, null=True, help_text="Site web du développeur",
                               verbose_name="Site web")
+    devise = models.CharField(max_length=255, blank=True, null=False, help_text="Devise du développeur",)
     tjm = models.IntegerField(blank=True, null=True, help_text="TJM du développeur")
     annotations = models.TextField(null=False, blank=True, help_text="Annotations du développeur")
     availability = models.TextField(null=False, blank=True, help_text="Disponibilité du développeur",
@@ -118,13 +121,13 @@ class Developer(models.Model):
 
     # relations
     status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='developers', null=True)
-    skills = models.ManyToManyField(Skill, through='DeveloperSkill', related_name='developer')
     languages = models.ManyToManyField(Language, related_name='developer')
     # sex : maculin or feminin
-    sex = models.CharField(max_length=255, null=False, default='maculin',
+    sexe = models.CharField(max_length=255, null=False, default='maculin',
                            choices=(('maculin', 'maculin'), ('feminin', 'feminin')))
+   # auth
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 
-    # auth
     def __str__(self):
         return self.name
 
@@ -132,6 +135,27 @@ class Developer(models.Model):
         ordering = ['-created_at']
         verbose_name_plural = "Developpeurs"
         verbose_name = "Developpeur"
+
+    # create user profile when developer is created
+
+
+
+@receiver(post_save, sender=Developer)
+def create_user(sender, instance, created, **kwargs):
+    print("create user")
+    if created and not instance.user:
+        # Generate a unique username based on the developer's name
+        username = f"{instance.firstName.lower()}.{instance.name.lower()}"
+
+        # Create a user with the generated username and a random password
+        user = User.objects.create_user(username=username, password=User.objects.make_random_password(),
+                                        email=instance.email)
+
+        # Assign the created user to the developer's user field
+        instance.user = user
+
+        # Save the updated developer instance
+        instance.save()
 
 
 class DeveloperSkill(models.Model):

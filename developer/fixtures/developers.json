@@ -3,122 +3,23 @@
     "model": "developer.language",
     "pk": 1,
     "fields": {
-      "name": "Français",
-      "code": "fr"
+      "name": "Français"
     }
   },
   {
     "model": "developer.language",
     "pk": 2,
     "fields": {
-      "name": "English",
-      "code": "en"
+      "name": "English"
     }
   },
   {
     "model": "developer.language",
-    "pk": 3,
+    "pk": 2,
     "fields": {
-      "name": "Español",
-      "code": "es"
+      "name": "malagasy"
     }
   },
-    {
-        "model": "developer.language",
-        "pk": 4,
-        "fields": {
-        "name": "Deutsch",
-        "code": "de"
-        }
-    },
-    {
-        "model": "developer.language",
-        "pk": 5,
-        "fields": {
-        "name": "Italiano",
-        "code": "it"
-        }
-    },
-    {
-        "model": "developer.language",
-        "pk": 6,
-        "fields": {
-        "name": "Português",
-        "code": "pt"
-        }
-    },
-    {
-        "model": "developer.language",
-        "pk": 7,
-        "fields": {
-        "name": "Nederlands",
-        "code": "nl"
-        }
-    },
-    {
-        "model": "developer.language",
-        "pk": 8,
-        "fields": {
-        "name": "Polski",
-        "code": "pl"
-        }
-    },
-    {
-        "model": "developer.language",
-        "pk": 9,
-        "fields": {
-        "name": "Русский",
-        "code": "ru"
-        }
-    },
-    {
-        "model": "developer.language",
-        "pk": 10,
-        "fields": {
-        "name": "日本語",
-        "code": "ja"
-        }
-    },
-    {
-        "model": "developer.language",
-        "pk": 11,
-        "fields": {
-        "name": "中文",
-        "code": "zh"
-        }
-    },
-    {
-        "model": "developer.language",
-        "pk": 12,
-        "fields": {
-        "name": "한국어",
-        "code": "ko"
-        }
-    },
-    {
-        "model": "developer.language",
-        "pk": 13,
-        "fields": {
-        "name": "العربية",
-        "code": "ar"
-        }
-    },
-    {
-        "model": "developer.language",
-        "pk": 14,
-        "fields": {
-        "name": "हिन्दी",
-        "code": "hi"
-        }
-    },
-    {
-        "model": "developer.language",
-        "pk": 15,
-        "fields": {
-        "name": "עברית",
-        "code": "he"
-        }
-    },
   {
     "model": "developer.level",
     "pk": 1,
@@ -169,9 +70,23 @@
   },
   {
     "model": "developer.status",
-    "pk": 3,
+    "pk": 4,
     "fields": {
-      "name": "Retenu pour entretien",
+      "name": "Référencé",
+      "isDefault": false
+    }
+  },  {
+    "model": "developer.status",
+    "pk": 5,
+    "fields": {
+      "name": "En contrat développement",
+      "isDefault": false
+    }
+  },  {
+    "model": "developer.status",
+    "pk": 6,
+    "fields": {
+      "name": "En contrat formateur",
       "isDefault": false
     }
   }

@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'more_admin_filters',
     'dbbackup',  # django-dbbackup
     'django_crontab',
+    'rest_framework_swagger',
+
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -108,7 +110,7 @@ WSGI_APPLICATION = "ultra.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": BASE_DIR / "db_auth.sqlite3",
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -184,3 +186,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTH_USER_MODEL = 'config.User'

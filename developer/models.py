@@ -122,8 +122,8 @@ class Developer(models.Model):
                                       verbose_name="Date de modification")
 
     # relations
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='developers', null=False,
-                               default=Status.objects.get(isDefault=True).id)
+    status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='developers', null=True, blank=True,
+                               verbose_name="Statut")
     languages = models.ManyToManyField(Language, related_name='developer')
     # sex : maculin or feminin
     sexe = models.CharField(max_length=255, null=False, default='maculin',

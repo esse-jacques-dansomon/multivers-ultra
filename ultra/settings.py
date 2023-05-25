@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     'more_admin_filters',
     'dbbackup',  # django-dbbackup
     'django_crontab',
-    'rest_framework_swagger',
 
 ]
 
@@ -110,7 +109,7 @@ WSGI_APPLICATION = "ultra.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db_auth.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',

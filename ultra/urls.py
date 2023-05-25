@@ -18,7 +18,6 @@ import os
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from rest_framework_swagger.views import get_swagger_view
 
 import skill
 from address.views import CountryListView, CountryDetailView
@@ -32,7 +31,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads ')
 MEDIA_URL = '/static/uploads'
 admin.site.site_header = "Ultra Admin"
 
-schema_view = get_swagger_view(title='Pastebin API')
 
 urlpatterns = [
 
